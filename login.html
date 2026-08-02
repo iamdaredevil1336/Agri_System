@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in or create your AgriSystem account to access personalized crop, seed, and agriculture information.">
+  <title>Sign In — AgriSystem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ANIMATED BACKGROUND -->
+  <div class="bg-canvas">
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+    <div class="bg-orb bg-orb--4"></div>
+    <div class="bg-orb bg-orb--5"></div>
+  </div>
+  <div class="bg-topo"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-vignette"></div>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">🌾 <span>AgriSystem</span></a>
+      <div class="nav-links">
+        <a href="crops.html">Crops</a>
+        <a href="seeds.html">Seeds</a>
+        <a href="seasons.html">Seasons</a>
+        <a href="soils.html">Soil Guide</a>
+      </div>
+      <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+        <div class="theme-toggle-knob"></div>
+      </div>
+      <button class="nav-menu-btn" onclick="toggleMenu()">☰</button>
+    </div>
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="crops.html">Crops</a>
+      <a href="seeds.html">Seeds</a>
+      <a href="seasons.html">Seasons</a>
+      <a href="soils.html">Soil Guide</a>
+    </div>
+  </nav>
+
+  <!-- AUTH PAGE -->
+  <section class="auth-page">
+    <div class="auth-container">
+      <!-- Left: Decorative Panel -->
+      <div class="auth-side-panel">
+        <div class="auth-side-content">
+          <div class="auth-side-icon">🌾</div>
+          <h2 class="auth-side-title">AgriSystem</h2>
+          <p class="auth-side-desc">Your complete agriculture companion. Discover crops, seeds, sowing calendars & soil guides.</p>
+          <div class="auth-side-features">
+            <div class="auth-side-feat">
+              <span class="auth-feat-icon">🌱</span>
+              <span>92+ Crops Database</span>
+            </div>
+            <div class="auth-side-feat">
+              <span class="auth-feat-icon">📅</span>
+              <span>Season Calendars</span>
+            </div>
+            <div class="auth-side-feat">
+              <span class="auth-feat-icon">🪱</span>
+              <span>Soil Matching</span>
+            </div>
+            <div class="auth-side-feat">
+              <span class="auth-feat-icon">💧</span>
+              <span>Care & Water Tips</span>
+            </div>
+          </div>
+        </div>
+        <div class="auth-side-glow"></div>
+      </div>
+
+      <!-- Right: Auth Form -->
+      <div class="auth-card">
+        <div class="auth-card-inner">
+          <div class="auth-header">
+            <h1 class="auth-title" id="authTitle">Welcome Back</h1>
+            <p class="auth-subtitle" id="authSubtitle">Sign in to your AgriSystem account</p>
+          </div>
+
+          <div class="auth-error" id="authError"></div>
+          <div class="auth-success" id="authSuccess"></div>
+
+          <form id="authForm" class="auth-form" autocomplete="on">
+            <div class="auth-field" id="authNameGroup" style="display:none">
+              <label for="authName" class="auth-label">Full Name</label>
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">👤</span>
+                <input type="text" id="authName" class="auth-input" placeholder="John Doe" autocomplete="name">
+              </div>
+            </div>
+
+            <div class="auth-field">
+              <label for="authEmail" class="auth-label">Email Address</label>
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">✉️</span>
+                <input type="email" id="authEmail" class="auth-input" placeholder="you@example.com" required autocomplete="email">
+              </div>
+            </div>
+
+            <div class="auth-field">
+              <label for="authPassword" class="auth-label">Password</label>
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">🔒</span>
+                <input type="password" id="authPassword" class="auth-input" placeholder="••••••••" required minlength="6" autocomplete="current-password">
+                <button type="button" class="auth-pwd-toggle" id="togglePassword" title="Show password">👁️</button>
+              </div>
+            </div>
+
+            <div class="auth-forgot-wrap" id="authForgotWrap">
+              <button type="button" class="auth-forgot-link" onclick="openForgotPassword()">Forgot Password?</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary auth-submit" id="authSubmit">Sign In</button>
+          </form>
+
+          <div class="auth-toggle-text" id="authToggleText">
+            Don't have an account? <button type="button" class="auth-toggle-link" onclick="initLoginPage.switchMode(false)">Sign Up</button>
+          </div>
+
+          <div class="auth-divider">
+            <span>or</span>
+          </div>
+
+          <a href="index.html" class="auth-guest-link" onclick="continueAsGuest(event)">Continue as Guest →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORGOT PASSWORD MODAL -->
+    <div class="forgot-overlay" id="forgotOverlay">
+      <div class="forgot-modal">
+        <button class="modal-close" onclick="closeForgotPassword()">✕</button>
+
+        <!-- STEP 1: Enter Email -->
+        <div class="forgot-step" id="forgotStep1">
+          <div class="forgot-icon">📧</div>
+          <h2 class="forgot-title">Forgot Password</h2>
+          <p class="forgot-desc">Enter your registered email address to receive a 6-digit verification OTP code.</p>
+          <div class="auth-error" id="forgotError1"></div>
+          <form onsubmit="forgotSendOTP(event)">
+            <div class="auth-field">
+              <label for="forgotEmail" class="auth-label">Email Address</label>
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">✉️</span>
+                <input type="email" id="forgotEmail" class="auth-input" placeholder="you@example.com" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary auth-submit" id="forgotSendBtn">Send 6-Digit OTP</button>
+          </form>
+          <button type="button" class="auth-forgot-back" onclick="closeForgotPassword()">← Back to Sign In</button>
+        </div>
+
+        <!-- STEP 2: Enter 6-Digit OTP -->
+        <div class="forgot-step" id="forgotStep2" style="display:none">
+          <div class="forgot-icon">🔑</div>
+          <h2 class="forgot-title">Enter Verification Code</h2>
+          <p class="forgot-desc">We've sent a 6-digit OTP code to</p>
+
+          <div class="reset-email-box">
+            <span class="reset-email-icon">📨</span>
+            <span class="reset-email-addr" id="forgotEmailDisplay"></span>
+          </div>
+
+          <div class="auth-error" id="forgotError2"></div>
+
+          <form id="otpForm" onsubmit="forgotVerifyOTP(event)">
+            <div class="otp-inputs-wrapper">
+              <input type="text" maxlength="1" pattern="[0-9]*" inputmode="numeric" class="otp-digit" id="otp1" autocomplete="one-time-code" required>
+              <input type="text" maxlength="1" pattern="[0-9]*" inputmode="numeric" class="otp-digit" id="otp2" required>
+              <input type="text" maxlength="1" pattern="[0-9]*" inputmode="numeric" class="otp-digit" id="otp3" required>
+              <input type="text" maxlength="1" pattern="[0-9]*" inputmode="numeric" class="otp-digit" id="otp4" required>
+              <input type="text" maxlength="1" pattern="[0-9]*" inputmode="numeric" class="otp-digit" id="otp5" required>
+              <input type="text" maxlength="1" pattern="[0-9]*" inputmode="numeric" class="otp-digit" id="otp6" required>
+            </div>
+            <button type="submit" class="btn btn-primary auth-submit" id="forgotVerifyBtn">Verify OTP &amp; Continue</button>
+          </form>
+
+          <div class="forgot-resend">
+            <span>Didn't get the code?</span>
+            <button type="button" class="auth-toggle-link" id="otpResendBtn" onclick="forgotResendOTP()">Resend OTP</button>
+            <span id="otpTimerText" style="font-size:0.8rem; opacity:0.8; margin-left:4px;"></span>
+          </div>
+          <button type="button" class="auth-forgot-back" onclick="forgotGoBack(1)">← Change email</button>
+        </div>
+
+        <!-- STEP 3: New Password -->
+        <div class="forgot-step" id="forgotStep3" style="display:none">
+          <div class="forgot-icon">🔓</div>
+          <h2 class="forgot-title">Set New Password</h2>
+          <p class="forgot-desc">Create a strong new password for your account.</p>
+          <div class="auth-error" id="forgotError3"></div>
+          <div class="auth-success" id="forgotSuccess3"></div>
+          <form onsubmit="forgotResetPassword(event)">
+            <div class="auth-field">
+              <label for="forgotNewPwd" class="auth-label">New Password</label>
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">🔒</span>
+                <input type="password" id="forgotNewPwd" class="auth-input" placeholder="••••••••" required minlength="6">
+              </div>
+            </div>
+            <div class="auth-field">
+              <label for="forgotConfirmPwd" class="auth-label">Confirm Password</label>
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">🔒</span>
+                <input type="password" id="forgotConfirmPwd" class="auth-input" placeholder="••••••••" required minlength="6">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary auth-submit" id="forgotResetBtn">Reset Password</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">🌾 AgriSystem</div>
+          <p>Agriculture Information System<br>Crop &amp; Seed Management</p>
+        </div>
+        <div class="footer-links">
+          <a href="crops.html">Crops</a>
+          <a href="seeds.html">Seeds</a>
+          <a href="seasons.html">Seasons</a>
+          <a href="soils.html">Soil Guide</a>
+        </div>
+      </div>
+      <div class="footer-bottom">Built with HTML · CSS · JavaScript — AgriSystem Project Team</div>
+    </div>
+  </footer>
+
+  <script src="api.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', initLoginPage);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "login": "लॉगिन",
+    "signup": "साइन अप",
+    "logout": "लॉग आउट",
+    "sendOtp": "ओटीपी भेजें"
+  },
+  "nav": {
+    "home": "होम",
+    "crops": "फसलें",
+    "seeds": "बीज",
+    "seasons": "मौसम",
+    "soils": "मिट्टी"
+  },
+  "search": {
+    "placeholder": "खोजें..."
+  }
+}

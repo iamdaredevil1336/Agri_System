@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "login": "લૉગિન",
+    "signup": "સાઇન અપ",
+    "logout": "લૉગઆઉટ",
+    "sendOtp": "ઓટીપી મોકલો"
+  },
+  "nav": {
+    "home": "મુખ્ય",
+    "crops": "પાક",
+    "seeds": "બીજ",
+    "seasons": "ઋતુઓ",
+    "soils": "માટી"
+  },
+  "search": {
+    "placeholder": "શોધો..."
+  }
+}

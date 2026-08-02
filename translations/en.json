@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "sendOtp": "Send OTP"
+  },
+  "nav": {
+    "home": "Home",
+    "crops": "Crops",
+    "seeds": "Seeds",
+    "seasons": "Seasons",
+    "soils": "Soils"
+  },
+  "search": {
+    "placeholder": "Search..."
+  }
+}
